@@ -1,12 +1,12 @@
-const xhr = new XMLHttpRequest ();
-const girisYap = document.getElementById('girisYap');
+const girisBtn = document.getElementById('girisYap');
+const api_url_CE = "http://localhost:8085/";
 
-const giris = () => {
-    xhr.open('GET','http://localhost:8085/v1/kullaniciLogin/getAllKullanici%27')
-    console.log(xhr.response);
-    xhr.send();
-};
 
-girisYap.addEventListener('click',()=>{
-    giris();
+girisBtn.addEventListener('click',()=>{
+    axios.get(`${api_url_CE} + v1/kullaniciLogin/getAllKullanici`)
+    .then(response => {
+     const users = response.data;
+     console.log(`GET users`, users);
+   })
+    .catch(error => console.error(error));
 });
